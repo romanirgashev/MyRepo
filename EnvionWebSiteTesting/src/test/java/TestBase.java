@@ -1,3 +1,4 @@
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.apache.tika.io.FilenameUtils;
 import org.junit.After;
@@ -85,14 +86,14 @@ public class TestBase {
         return this;
     }
 
+    @Attachment(value = "{screenshot_name}", type = "image/png")
     public void captureScreen() {
         Date dateNow = new Date();
         SimpleDateFormat format = new SimpleDateFormat("hh_mm_ss");
         String fileName = format.format(dateNow) + ".png";
-
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileHandler.copy(screenshot, new File("D:\\mygit\\at2021-roman\\EnvionWebSiteTesting\\target\\allure-results\\" + fileName));
+            FileHandler.copy(screenshot, new File("C:\\Users\\user2\\.jenkins\\workspace\\EnvionProject\\EnvionWebSiteTesting\\target\\allure-results\\" + fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }

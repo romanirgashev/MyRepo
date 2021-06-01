@@ -479,6 +479,20 @@ public class MainPage {
 
     }*/
 
+    public String  gavgav(int number) throws InterruptedException {
+
+        IndustrySectionParagraphs.addAll(driver.findElements(ScrollableSectionCommonTextDivLocator));
+        int size = IndustrySectionParagraphs.size();
+
+        for(int i = 0; i < size; i++ )
+        {
+            IndustrySectionParagraphsTexts.add(IndustrySectionParagraphs.get(i).getAttribute("innerHTML"));
+        }
+        String actual = IndustrySectionParagraphsTexts.get(number - 1);
+        return actual;
+
+    }
+
 
 
 }

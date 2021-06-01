@@ -371,62 +371,72 @@ public class MainPageTests extends TestBase{
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_First_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_First_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(1, mainPage.ScrollableHealthcareSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Second_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Second_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(2, mainPage.ScrollableCRMSystemsSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Third_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Third_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(3, mainPage.ScrollableDataScienceSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Fourth_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Fourth_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(4, mainPage.ScrollableFitnessSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Fifth_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Fifth_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(5, mainPage.ScrollableGPSNavigationSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Sixth_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Sixth_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(6, mainPage.ScrollableMarketingSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Seventh_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Seventh_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(7, mainPage.ScrollableMediaAndEducationSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Eighth_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Eighth_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(8, mainPage.ScrollableNaturalLanguageSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Ninth_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Ninth_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(9, mainPage.ScrollableSocialMediaSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Tenth_IndustryTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Tenth_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(10, mainPage.ScrollableTravelAndHospitalitySectionParagraphText);
         Assert.assertTrue(bool);
     }
@@ -438,33 +448,38 @@ public class MainPageTests extends TestBase{
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_First_ServicesTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_First_ServicesTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_ServicesSection(1,mainPage.ServicesBusinessAnalysisSectionParagraphText);
         Assert.assertTrue(bool);
 
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Second_ServicesTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Second_ServicesTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_ServicesSection(2,mainPage.ServicesProductDesignSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Third_ServicesTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Third_ServicesTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_ServicesSection(3,mainPage.ServicesDevelopmentSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Fourth_ServicesTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Fourth_ServicesTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_ServicesSection(4,mainPage.ServicesQualityAssuranceSectionParagraphText);
         Assert.assertTrue(bool);
     }
 
+    @Flaky
     @Test
-    public void paragraph_Of_Fifth_ServicesTab_Has_Correct_Text_expect_pass() throws InterruptedException {
+    public void paragraph_Of_Fifth_ServicesTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_ServicesSection(5,mainPage.ServicesSupportSectionParagraphText);
         Assert.assertTrue(bool);
     }
@@ -865,14 +880,14 @@ public class MainPageTests extends TestBase{
 
 
 
-/*    @Test
+    @Test
     public void gav() throws InterruptedException {
-        String actual = mainPage.gav(2);
-        String expected = mainPage.ServicesProductDesignSectionParagraphText;
+        String actual = mainPage.gavgav(2);
+        String expected = mainPage.ScrollableCRMSystemsSectionParagraphText;
         System.out.println(actual);
         System.out.println(expected);
         Assert.assertEquals(expected,actual);
-    }*/
+    }
 
 
 
