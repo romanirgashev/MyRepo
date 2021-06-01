@@ -880,14 +880,14 @@ public class MainPageTests extends TestBase{
 
 
 
-    @Test
+/*    @Test
     public void gav() throws InterruptedException {
         String actual = mainPage.gavgav(2);
         String expected = mainPage.ScrollableCRMSystemsSectionParagraphText;
         System.out.println(actual);
         System.out.println(expected);
         Assert.assertEquals(expected,actual);
-    }
+    }*/
 
 
 

@@ -363,6 +363,14 @@ public class MainPage {
             IndustrySectionParagraphsTexts.add(IndustrySectionParagraphs.get(i).getAttribute("innerHTML"));
         }
         String actual = IndustrySectionParagraphsTexts.get(number - 1);
+        if(actual.contains("&shy;"))
+        {
+            actual.replace("&shy;"," ");
+        }
+        else if(actual.contains("&nbsp;"))
+        {
+            actual.replace("&nbsp"," ");
+        }
         boolean bool = actual.equals(expected);
         return bool;
 
@@ -389,6 +397,14 @@ public class MainPage {
             ServicesSectionParagraphsTexts.add(ServicesSectionParagraphs.get(i).getAttribute("innerHTML"));
         }
         String actual = ServicesSectionParagraphsTexts.get(number - 1);
+        if(actual.contains("&shy;"))
+        {
+            actual.replace("&shy;"," ");
+        }
+        else if(actual.contains("&nbsp;"))
+        {
+            actual.replace("&nbsp"," ");
+        }
         boolean bool = actual.equals(ExpectedText);
         return bool;
 
@@ -479,7 +495,7 @@ public class MainPage {
 
     }*/
 
-    public String  gavgav(int number) throws InterruptedException {
+/*    public String  gavgav(int number) throws InterruptedException {
 
         IndustrySectionParagraphs.addAll(driver.findElements(ScrollableSectionCommonTextDivLocator));
         int size = IndustrySectionParagraphs.size();
@@ -491,7 +507,7 @@ public class MainPage {
         String actual = IndustrySectionParagraphsTexts.get(number - 1);
         return actual;
 
-    }
+    }*/
 
 
 
