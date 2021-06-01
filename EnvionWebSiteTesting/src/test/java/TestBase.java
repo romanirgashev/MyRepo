@@ -13,6 +13,9 @@ import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -23,20 +26,12 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
 
 
-
     WebDriver driver;
-
-
-
-
-
-
-
 
 
     public void setUp(String browser, String URL) {
 
-        System.setProperty("allure.results.directory", "allure-results/");
+//        System.setProperty("allure.results.directory", "D:\\GitHubRepo\\MyRepo\\EnvionWebSiteTesting\\target\\allure-results");
         switch (browser)
         {
             case "chrome":
@@ -61,7 +56,46 @@ public class TestBase {
         driver.get(URL);
 
     }
+    
 
+    @Attachment(value = "Browser screenshot after test failed", type = "image/png")
+    public byte[] makeScreenshot() {
+        Date dateNow = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("hh_mm_ss");
+        String fileName = format.format(dateNow) + ".png";
+        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileHandler.copy(screenshot, new File("target\\surefire-reports\\" + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("screenshot was not transferred to folder");
+        }
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(screenshot);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("screenshot was not transformed to BufImage");
+        }
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(image, "png", baos);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Buf image was not transformed to Byte");
+        }
+
+        byte[] imageBytes = baos.toByteArray();
+
+        if (imageBytes.length == 0) {
+            String errorMessage = "Converted byte array for screenshot is empty.";
+            throw new RuntimeException(errorMessage);
+        }
+        return imageBytes;
+    }
+    
+    
+    
     @Step
     public Object scrollToElement(int quantity) throws InterruptedException {
         Actions action = new Actions(driver);

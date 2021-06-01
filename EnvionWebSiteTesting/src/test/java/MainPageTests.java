@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 public class MainPageTests extends TestBase{
 
+    public WebDriver driver;
+
 
     private MainPage mainPage;
     private AboutUsPage aboutUsPage;
@@ -34,21 +36,23 @@ public class MainPageTests extends TestBase{
     }
 
 
+
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
     public void Company_Name_Header_Is_Displayed_expect_pass() throws InterruptedException {
         boolean bool = checkPresenseOfElement(mainPage.CompanyNameHeader);
-        captureScreen();
+        makeScreenshot();
         Assert.assertTrue(bool);
     }
 
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
+    @DisplayName("Первый заголовок имеет текст \"Industries\"")
     public void Company_Name_Header_Has_Correct_Text_expect_pass() {
         String actual = getTextOfElement(mainPage.CompanyNameHeader);
-        captureScreen();
         Assert.assertEquals("Envion software",actual);
     }
+
 
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
@@ -72,6 +76,7 @@ public class MainPageTests extends TestBase{
     @Test
     public void Company_Logo_Has_Correct_Link_expect_pass() {
         clickElement(mainPage.CompanyLogo);
+        makeScreenshot();
         boolean bool = checkURLCorrectness("https://envionsoftware.com/");
         Assert.assertTrue(bool);
     }
@@ -94,6 +99,7 @@ public class MainPageTests extends TestBase{
     public void Expertise_Image_Has_Correct_Link_expect_pass()  {
         clickElement(mainPage.gamburgerMenuButton);
         clickElement(mainPage.AboutUsButtonFromGamburgerMenu);
+        makeScreenshot();
         boolean bool =  checkURLCorrectness(aboutUsPage.AboutUsPageURL);
         Assert.assertTrue(bool);
     }
@@ -116,6 +122,7 @@ public class MainPageTests extends TestBase{
     @Test
     public void Gamburger_Menu_Is_Displayed_expect_pass() throws InterruptedException {
         clickElement(mainPage.gamburgerMenuButton);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.gamburgerMenu);
         Assert.assertTrue(bool);
     }
@@ -235,6 +242,7 @@ public class MainPageTests extends TestBase{
     public void Services_Header_Is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(2);
         scrollToElementSmoothly(1);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_Services_H2Header);
         Assert.assertTrue(bool);
     }
@@ -250,6 +258,7 @@ public class MainPageTests extends TestBase{
     public void OurClients_Header_Is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(5);
         scrollToElementSmoothly(10);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.OurClientsSection_OurClients_H2Header);
         Assert.assertTrue(bool);
     }
@@ -371,8 +380,10 @@ public class MainPageTests extends TestBase{
         Assert.assertTrue(bool);
     }
 
+
     @Flaky
     @Test
+
     public void paragraph_Of_First_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(1, mainPage.ScrollableHealthcareSectionParagraphText);
         Assert.assertTrue(bool);
@@ -380,6 +391,7 @@ public class MainPageTests extends TestBase{
 
     @Flaky
     @Test
+    @DisplayName("should fail")
     public void paragraph_Of_Second_IndustryTab_Has_Correct_InnerHTML_expect_pass() throws InterruptedException {
         boolean bool = mainPage.checkParagraphsNumberMatchesWithText_IndustriesTab(2, mainPage.ScrollableCRMSystemsSectionParagraphText);
         Assert.assertTrue(bool);
@@ -484,10 +496,13 @@ public class MainPageTests extends TestBase{
         Assert.assertTrue(bool);
     }
 
+
+
     @Test
     public void Business_Analysis_Paragraph_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(2);
         scrollToElementSmoothly(5);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_BusinessAnalysisParagraphLocator);
         Assert.assertTrue(bool);
     }
@@ -496,6 +511,7 @@ public class MainPageTests extends TestBase{
     public void Business_Analysis_H3Header_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(2);
         scrollToElementSmoothly(5);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_BusinessAnalysisH3HeaderLocator);
         Assert.assertTrue(bool);
     }
@@ -504,6 +520,7 @@ public class MainPageTests extends TestBase{
     public void Business_Analysis_ReadMore_Button_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(2);
         scrollToElementSmoothly(5);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_BusinessAnalysisReadMoreButton);
         Assert.assertTrue(bool);
     }
@@ -514,6 +531,7 @@ public class MainPageTests extends TestBase{
         scrollToElementSmoothly(1);
         clickElement(mainPage.ServicesSection_BusinessAnalysisReadMoreButton);
         boolean bool = checkURLCorrectness("https://envionsoftware.com/how-we-work/#tab1");
+        makeScreenshot();
         Assert.assertTrue(bool);
     }
 
@@ -524,7 +542,7 @@ public class MainPageTests extends TestBase{
         clickElement(mainPage.ServicesSection_BusinessAnalysisReadMoreButton);
         boolean bool = check_Element_IsEnabled(howWeWorkSupport.BusinessAnalysis_TabSwither);
         WebDriverWait(howWeWorkSupport.BusinessAnalysis_TabSwither);
-        captureScreen();
+        makeScreenshot();
         Assert.assertTrue(bool);
     }
 
@@ -532,6 +550,7 @@ public class MainPageTests extends TestBase{
     public void Product_Design_Paragraph_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(3);
         scrollToElementSmoothly(1);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_ProductDesignParagraphLocator);
         Assert.assertTrue(bool);
     }
@@ -540,6 +559,7 @@ public class MainPageTests extends TestBase{
     public void Product_Design_H3Header_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(3);
         scrollToElementSmoothly(1);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_ProductDesignH3HeaderLocator);
         Assert.assertTrue(bool);
     }
@@ -548,6 +568,7 @@ public class MainPageTests extends TestBase{
     public void Product_Design_ReadMore_Button_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(3);
         scrollToElementSmoothly(1);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_ProductDesignReadMoreButton);
         Assert.assertTrue(bool);
     }
@@ -557,6 +578,7 @@ public class MainPageTests extends TestBase{
         scrollToElement(3);
         scrollToElementSmoothly(1);
         clickElement(mainPage.ServicesSection_ProductDesignReadMoreButton);
+        makeScreenshot();
         boolean bool = checkURLCorrectness("https://envionsoftware.com/how-we-work/#tab2");
         Assert.assertTrue(bool);
     }
@@ -565,6 +587,7 @@ public class MainPageTests extends TestBase{
     public void Click_On_Product_Design_ReadMore_Button_From_Services_Section_Opens_Correct_Tab_expect_pass() throws InterruptedException {
         scrollToElement(3);
         scrollToElementSmoothly(1);
+        makeScreenshot();
         clickElement(mainPage.ServicesSection_ProductDesignReadMoreButton);
         boolean bool = check_Element_IsEnabled(howWeWorkSupport.ProductDesign_TabSwither);
         Assert.assertTrue(bool);
@@ -574,6 +597,7 @@ public class MainPageTests extends TestBase{
     public void Development_Paragraph_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(3);
         scrollToElementSmoothly(10);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_DevelopmentParagraphLocator);
         Assert.assertTrue(bool);
     }
@@ -582,6 +606,7 @@ public class MainPageTests extends TestBase{
     public void Development_H3Header_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(3);
         scrollToElementSmoothly(10);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_DevelopmentH3HeaderLocator);
         Assert.assertTrue(bool);
     }
@@ -590,6 +615,7 @@ public class MainPageTests extends TestBase{
     public void Development_ReadMore_Button_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(3);
         scrollToElementSmoothly(10);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_DevelopmentReadMoreButton);
         Assert.assertTrue(bool);
     }
@@ -598,6 +624,7 @@ public class MainPageTests extends TestBase{
     public void Development_ReadMore_Button_From_Services_Section_Has_Correct_Link_expect_pass() throws InterruptedException {
         scrollToElement(3);
         scrollToElementSmoothly(10);
+        makeScreenshot();
         clickElement(mainPage.ServicesSection_DevelopmentReadMoreButton);
         boolean bool = checkURLCorrectness("https://envionsoftware.com/how-we-work/#tab3");
         Assert.assertTrue(bool);
@@ -607,6 +634,7 @@ public class MainPageTests extends TestBase{
     public void Click_On_Development_ReadMore_Button_From_Services_Section_Opens_Correct_Tab_expect_pass() throws InterruptedException {
         scrollToElement(4);
         scrollToElementSmoothly(5);
+        makeScreenshot();
         clickElement(mainPage.ServicesSection_DevelopmentReadMoreButton);
         boolean bool = check_Element_IsEnabled(howWeWorkSupport.Development_TabSwither);
         Assert.assertTrue(bool);
@@ -617,6 +645,7 @@ public class MainPageTests extends TestBase{
     public void Quality_Assurance_Paragraph_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(4);
         scrollToElementSmoothly(5);
+        makeScreenshot();
             boolean bool = checkPresenseOfElement(mainPage.ServicesSection_QualityAssuranceParagraphLocator);
         Assert.assertTrue(bool);
     }
@@ -625,6 +654,7 @@ public class MainPageTests extends TestBase{
     public void Quality_Assurance_H3Header_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(4);
         scrollToElementSmoothly(5);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_QualityAssuranceH3HeaderLocator);
         Assert.assertTrue(bool);
     }
@@ -633,6 +663,7 @@ public class MainPageTests extends TestBase{
     public void Quality_Assurance_ReadMore_Button_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(4);
         scrollToElementSmoothly(5);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_QualityAssuranceReadMoreButton);
         Assert.assertTrue(bool);
     }
@@ -641,6 +672,7 @@ public class MainPageTests extends TestBase{
     public void Quality_Assurance_ReadMore_Button_From_Services_Section_Has_Correct_Link_expect_pass() throws InterruptedException {
         scrollToElement(4);
         scrollToElementSmoothly(5);
+        makeScreenshot();
         clickElement(mainPage.ServicesSection_QualityAssuranceReadMoreButton);
         boolean bool = checkURLCorrectness("https://envionsoftware.com/how-we-work/#tab4");
         Assert.assertTrue(bool);
@@ -650,6 +682,7 @@ public class MainPageTests extends TestBase{
     public void Click_On_Quality_Assurance_ReadMore_Button_From_Services_Section_Opens_Correct_Tab_expect_pass() throws InterruptedException {
         scrollToElement(4);
         scrollToElementSmoothly(5);
+        makeScreenshot();
         clickElement(mainPage.ServicesSection_QualityAssuranceReadMoreButton);
         boolean bool = check_Element_IsEnabled(howWeWorkSupport.QualityAssurance_TabSwither);
         Assert.assertTrue(bool);
@@ -658,6 +691,7 @@ public class MainPageTests extends TestBase{
     @Test
     public void Support_Paragraph_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(5);
+        makeScreenshot();
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_QualityAssuranceParagraphLocator);
         Assert.assertTrue(bool);
     }
@@ -705,12 +739,10 @@ public class MainPageTests extends TestBase{
     public void OurClients_Paragraph_From_OurClients_Section_Has_Correct_Text_expect_pass() throws InterruptedException {
         scrollToElement(6);
         scrollToElementSmoothly(1);
+        makeScreenshot();
         String actual = getTextOfElement(mainPage.OurClientsSection_OurClients_Paragraph);
         Assert.assertEquals(mainPage.OurClientsSection_OurClients_Paragraph_Text,actual);
     }
-
-
-
 
 
 
@@ -880,6 +912,7 @@ public class MainPageTests extends TestBase{
 
 
 
+
 /*    @Test
     public void gav() throws InterruptedException {
         String actual = mainPage.gavgav(2);
@@ -894,7 +927,7 @@ public class MainPageTests extends TestBase{
 
 
     @After
-    public void TearDown(){
+    public void TearDown() throws InterruptedException {
         tearDown();
     }
 
