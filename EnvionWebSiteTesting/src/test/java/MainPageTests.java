@@ -26,7 +26,7 @@ public class MainPageTests extends TestBase{
 
     @Before
     public void SetUp() {
-        setUp("chrome","https://envionsoftware.com");
+        setUp("edge","https://envionsoftware.com");
         mainPage = new MainPage(driver);
         expertisePage = new ExpertisePage(driver);
         aboutUsPage = new AboutUsPage(driver);
