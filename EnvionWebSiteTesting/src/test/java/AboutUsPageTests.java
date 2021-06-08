@@ -18,7 +18,7 @@ public class AboutUsPageTests extends TestBase{
 
     @Before
     public void SetUp() {
-        setUp("chrome","https://envionsoftware.com/about_us/");
+        setUp("chrome","https://envionsoftware.com");
         mainPage = new MainPage(driver);
         aboutUsPage = new AboutUsPage(driver);
     }

@@ -4,6 +4,7 @@ import org.apache.tika.io.FilenameUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,8 +13,9 @@ import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.support.Color;
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -26,12 +28,17 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
 
 
+
     WebDriver driver;
+
+
+
+
 
 
     public void setUp(String browser, String URL) {
 
-//        System.setProperty("allure.results.directory", "D:\\GitHubRepo\\MyRepo\\EnvionWebSiteTesting\\target\\allure-results");
+        System.setProperty("allure.results.directory", "allure-results/");
         switch (browser)
         {
             case "chrome":
@@ -50,15 +57,39 @@ public class TestBase {
                 break;
 
         }
+        System.setProperty("webdriver.chrome.whitelistedIps", "192.168.56.1");
 
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(URL);
 
     }
-    
 
-    @Attachment(value = "Browser screenshot after test failed", type = "image/png")
+    @Step
+    public Object scrollToElement(int quantity) throws InterruptedException {
+        Actions action = new Actions(driver);
+        for(int i = 1; i <= quantity;i ++) {
+            Thread.sleep(300);
+            action.moveByOffset(30, 20).click().build().perform();
+            Thread.sleep(300);
+            action.sendKeys(Keys.PAGE_DOWN).build().perform();
+        }
+        return this;
+    }
+
+    @Step
+    public Object scrollToElementSmoothly(int quantity) throws InterruptedException {
+        Actions action = new Actions(driver);
+        for(int i = 1; i <= quantity;i ++) {
+            Thread.sleep(300);
+            action.moveByOffset(30, 20).click().build().perform();
+            Thread.sleep(300);
+            action.sendKeys(Keys.ARROW_DOWN).build().perform();
+        }
+        return this;
+    }
+
+    @Attachment(value = "Screenshot of the actual result of the test", type = "image/png")
     public byte[] makeScreenshot() {
         Date dateNow = new Date();
         SimpleDateFormat format = new SimpleDateFormat("hh_mm_ss");
@@ -93,52 +124,12 @@ public class TestBase {
         }
         return imageBytes;
     }
-    
-    
-    
-    @Step
-    public Object scrollToElement(int quantity) throws InterruptedException {
-        Actions action = new Actions(driver);
-        for(int i = 1; i <= quantity;i ++) {
-            Thread.sleep(300);
-            action.moveByOffset(30, 20).click().build().perform();
-            Thread.sleep(300);
-            action.sendKeys(Keys.PAGE_DOWN).build().perform();
-        }
-        return this;
-    }
-
-    @Step
-    public Object scrollToElementSmoothly(int quantity) throws InterruptedException {
-        Actions action = new Actions(driver);
-        for(int i = 1; i <= quantity;i ++) {
-            Thread.sleep(300);
-            action.moveByOffset(30, 20).click().build().perform();
-            Thread.sleep(300);
-            action.sendKeys(Keys.ARROW_DOWN).build().perform();
-        }
-        return this;
-    }
-
-    @Attachment(value = "{screenshot_name}", type = "image/png")
-    public void captureScreen() {
-        Date dateNow = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("hh_mm_ss");
-        String fileName = format.format(dateNow) + ".png";
-        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        try {
-            FileHandler.copy(screenshot, new File("C:\\Users\\user2\\.jenkins\\workspace\\EnvionProject\\EnvionWebSiteTesting\\target\\allure-results\\" + fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     @Step
-    public boolean checkURLCorrectness(String expected){
+    public String checkURLCorrectness(){
         String actual = driver.getCurrentUrl();
-        boolean bool = actual.equals(expected);
-        return bool;
+        return actual;
     }
 
     @Step
@@ -162,7 +153,7 @@ public class TestBase {
     public Object WebDriverWait(By Element)
     {
 //        WebDriverWait waitDriver = new WebDriverWait(driver, 10);
-        new WebDriverWait(driver,5)
+        new WebDriverWait(driver,1)
                 .until(ExpectedConditions.elementToBeClickable(Element));
 //        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         return this;
@@ -174,6 +165,23 @@ public class TestBase {
         String textOfElement = driver.findElement(Element).getAttribute("textContent").trim();
         return textOfElement;
     }
+
+    @Step
+    public String getRGBColorOfElement(By Element)
+    {
+        String colorOfElement = driver.findElement(Element).getCssValue("color");
+        return colorOfElement;
+    }
+
+    @Step
+    public String getColorAs_HEX_OfElement(By Element)
+    {
+        String colorOfElement = driver.findElement(Element).getCssValue("color");
+        String ColorHEX = Color.fromString(colorOfElement).asHex();
+        return ColorHEX;
+    }
+
+
     @Step
     public String getInnerHTMLOfElement(By Element)
     {

@@ -18,12 +18,24 @@ public class MainPage {
     protected By DevelopmentHeader = By.xpath("//span[text()='Development with spirit' ]");
     protected By CompanyLogo = By.xpath("/html/body/div[2]/div[1]/div/header/div/a/img");
     protected By ExpertiseImage = By.xpath("//html/body/div[2]/div[1]/div/div/section/div/a/img");
-    protected By gamburgerMenuButton = By.xpath("/html/body/nav/div[1]/button");
-//    protected By HomePageBackground = (By.xpath("/html/body/div[2]/div[1]/div/div/section/img"));
+    protected By gamburgerMenuButton = By.xpath("/html/body/nav/div[1]/button/span[2]");
+    protected By CloseGamburgerMenuButton = By.xpath("/html/body/nav/div[1]/button/span[2]/span[1]");
+    protected By BackgroundImage = (By.xpath("/html/body/div[2]/div[1]/div/div/section/img"));
 
     //The curtain which opens after clicking gamburgerMenuButton
     protected By gamburgerMenu = By.xpath("//nav/div/div[2]");
     protected By AboutUsButtonFromGamburgerMenu = By.xpath("//*[@id=\"menu-item-257\"]/a/em/span");
+    protected By HomeButtonFromGamburgerMenu = By.xpath("//*[@id=\"menu-item-1474\"]/a/em/span");
+    protected By HowWeWorkButtonFromGamburgerMenu = By.xpath("//*[@id=\"menu-item-766\"]/a/em/span");
+    protected By CareerButtonFromGamburgerMenu = By.xpath("//*[@id=\"menu-item-255\"]/a/em/span");
+    protected By PortfolioButtonFromGamburgerMenu = By.xpath("//*[@id=\"menu-item-880\"]/a/em/span");
+    protected By GetInTouchButtonFromGamburgerMenu = By.xpath("//*[@id=\"menu-item-254\"]/a/em/span");
+
+    protected By MenuNameFromGamburgerMenu = By.cssSelector("body > nav > div.menu__box > div.menu__content > div.menu__body > div > b");
+    protected By GetInTouchInscriptionFromGamburgerMenu = By.xpath("/html/body/nav/div[2]/div[2]/div[2]/b");
+    protected By EmailAdressFromGamburgerMenu = By.xpath("/html/body/nav/div[2]/div[2]/div[2]/a");
+
+    protected By BodyLocator = By.xpath("/html/body");
 
 
 
@@ -31,24 +43,11 @@ public class MainPage {
 
     protected By IndustryH2Header = By.xpath("/html/body/div[2]/div[1]/div/div");
 
-    protected By ScrollableSectionFirstH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='Healthcare']") ;
-    protected By ScrollableSectionSecondH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='CRM Systems']") ;
-    protected By ScrollableSectionThirdH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='Data Science']") ;
-    protected By ScrollableSectionFourthH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='Fitness & Wellness']") ;
-    protected By ScrollableSectionFifthH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='GPS Navigation']") ;
-    protected By ScrollableSectionSixthH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='Marketing & Advertising']") ;
-    protected By ScrollableSectionSeventhH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='Media & Education']") ;
-    protected By ScrollableSectionEighthH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='Natural Language Processing']") ;
-    protected By ScrollableSectionNinthH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='Social Media']") ;
-    protected By ScrollableSectionTenthH3Header =By.xpath("//div[@class='industries__text slick-arrow']/h3[text()='Travel & Hospitality']") ;
-//    protected By ScrollableSectionH3HeaderCommonLocator = By.xpath("//div[@class='industries__text slick-arrow']/h3");
-
-
     protected By ScrollableSectionSecondTabNextDiv = By.xpath("/html/body/div[2]/div[1]/div/section[1]/div/ul/div/div/li[3]");
     protected By ScrollableSectionThirdTabNextDiv = By.xpath("/html/body/div[2]/div[1]/div/section[1]/div/ul/div/div/li[4]");
 //    protected By ScrollableSectionFourthNextDiv = By.xpath("/html/body/div[2]/div[1]/div/section[1]/div/ul/div/div/li[5]");
 
-    protected By ScrollableSectionSecondImage =By.xpath("/html/body/div[2]/div[1]/div/section[1]/div/ul/div/div/li[3]/div/div[1]/img") ;
+    protected By ScrollableSectionCommonImageLocator = By.xpath("/html/body/div[2]/div[1]/div/section[1]/div/ul/div/div/li/div/div/img") ;
 
     protected By ScrollableSectionFirstDiv = By.xpath("/html/body/div[2]/div[1]/div/section[1]/div/ul/div/div/li[3]");
     protected By ScrollableSectionSecondDiv = By.xpath("/html/body/div[2]/div[1]/div/section[1]/div/ul/div/div/li[4]");
@@ -181,7 +180,7 @@ public class MainPage {
     protected By ServicesSection_QualityAssuranceReadMoreButton = By.xpath("/html/body/div[2]/div[1]/div/section[2]/div[4]/div[2]/a/span[1]/span");
 
     protected By ServicesSection_SupportParagraphLocator = By.xpath("/html/body/div[2]/div[1]/div/section[2]/div[5]/div[2]/p");
-    protected By ServicesSection_SupportH3HeaderLocator = By.xpath("//h3[text()='Support']");
+    protected By ServicesSection_SupportH3HeaderLocator = By.xpath("/html/body/div[2]/div[1]/div/section[2]/div[5]/div[1]/h3");
     protected By ServicesSection_SupportReadMoreButton = By.xpath("/html/body/div[2]/div[1]/div/section[2]/div[5]/div[2]/a/span[1]/span");
 
     protected By ServicesSectionCommonParagraphLocator = By.xpath("/html/body/div[2]/div[1]/div/section[2]/div/div[2]/p");
@@ -223,6 +222,12 @@ public class MainPage {
     //Collection of H3 headers values from Services Section
     List<String>ServicesH3Texts =  new ArrayList<>();
 
+
+    //Collection of Images locators from Industries Section
+    List<WebElement>ImageLocators =  new ArrayList<>();
+    //Collection of Image dimensions from Industries Section
+    List<Dimension> ImageDimensions =  new ArrayList<>();
+
     //Collection of paragraphs locators from Industries Section
     List<WebElement>IndustrySectionParagraphs =  new ArrayList<>();
     //Collection of paragraphs values  from Industries Section
@@ -258,17 +263,15 @@ public class MainPage {
 
 
     @Step
-    public boolean checkH2HeadersQuantity(int quantity) throws InterruptedException {
-
+    public int checkH2HeadersQuantity(){
         H2.addAll(driver.findElements(new By.ByTagName("h2")));
         int size = H2.size();
-        boolean bool =  size == quantity;
-        return bool;
+        return size;
 
     }
 
     @Step
-    public boolean checkH2HeaderNumberMatchesWithText(int number,String ExpectedText) throws InterruptedException {
+    public String checkH2HeaderNumberMatchesWithText(int number){
 
         H2.addAll(driver.findElements(new By.ByTagName("h2")));
         int size = H2.size();
@@ -278,44 +281,43 @@ public class MainPage {
             H2Texts.add(H2.get(i).getAttribute("textContent"));
         }
         String actual = H2Texts.get(number - 1).trim();
-        boolean bool = actual.equals(ExpectedText);
-        return bool;
+        return actual;
     }
 
     @Step
-    public boolean checkAllH3HeadersQuantity(int quantity) throws InterruptedException {
-
+    public int checkAllH3HeadersQuantity() {
         H3.addAll(driver.findElements(new By.ByTagName("h3")));
         int size = H3.size();
-        boolean bool =  size == quantity;
-        return bool;
+        return size;
     }
 
     @Step
-    public boolean check_H3Headers_Quantity_IndustriesTab(int number) throws InterruptedException {
+    public int check_H3Headers_Quantity_IndustriesTab() {
 
         H3.addAll(driver.findElements(new By.ByTagName("h3")));
         for(int i = 0; i < 10; i++ )
         {
             IndustriesH3Texts.add(H3.get(i).getAttribute("textContent"));
         }
-        boolean bool = IndustriesH3Texts.size() == number;
-        return bool;
+        int size = IndustriesH3Texts.size();
+        return size;
     }
+
+
     @Step
-    public boolean check_H3Headers_Quantity_ServicesTab(int number) throws InterruptedException {
+    public int check_H3Headers_Quantity_ServicesTab() {
 
         H3.addAll(driver.findElements(new By.ByTagName("h3")));
         for(int i = 22; i < 27; i++ )
         {
             ServicesH3Texts.add(H3.get(i).getAttribute("textContent"));
         }
-        boolean bool = ServicesH3Texts.size() == number;
-        return bool;
+        int size = ServicesH3Texts.size();
+        return size;
     }
 
     @Step
-    public boolean checkIndustriesH3HeaderNumberMatchesWithText(int number,String ExpectedText) throws InterruptedException {
+    public String checkIndustriesH3HeaderNumberMatchesWithText(int number) {
 
         H3.addAll(driver.findElements(new By.ByTagName("h3")));
 
@@ -324,12 +326,11 @@ public class MainPage {
             IndustriesH3Texts.add(H3.get(i).getAttribute("textContent"));
         }
         String actual = IndustriesH3Texts.get(number - 1).trim();
-        boolean bool = actual.equals(ExpectedText);
-        return bool;
+        return actual;
     }
 
     @Step
-    public boolean checkServicesH3HeaderNumberMatchesWithText(int number,String ExpectedText) throws InterruptedException {
+    public String checkServicesH3HeaderNumberMatchesWithText(int number) {
 
         H3.addAll(driver.findElements(new By.ByTagName("h3")));
 
@@ -338,22 +339,20 @@ public class MainPage {
             ServicesH3Texts.add(H3.get(i).getAttribute("textContent"));
         }
         String actual = ServicesH3Texts.get(number - 1).trim();
-        boolean bool = actual.equals(ExpectedText);
-        return bool;
+        return actual;
     }
 
     @Step
-    public boolean checkParagraphsQuantity_IndustriesTab(int quantity) throws InterruptedException {
+    public int checkParagraphsQuantity_IndustriesTab(){
 
         IndustrySectionParagraphs.addAll(driver.findElements(ScrollableSectionCommonTextDivLocator));
         int size = IndustrySectionParagraphs.size();
-        boolean bool =  size == quantity;
-        return bool;
+        return size;
 
     }
 
     @Step
-    public boolean checkParagraphsNumberMatchesWithText_IndustriesTab(int number,String expected) throws InterruptedException {
+    public String checkParagraphsNumberMatchesWithText_IndustriesTab(int number) {
 
         IndustrySectionParagraphs.addAll(driver.findElements(ScrollableSectionCommonTextDivLocator));
         int size = IndustrySectionParagraphs.size();
@@ -363,31 +362,21 @@ public class MainPage {
             IndustrySectionParagraphsTexts.add(IndustrySectionParagraphs.get(i).getAttribute("innerHTML"));
         }
         String actual = IndustrySectionParagraphsTexts.get(number - 1);
-        if(actual.contains("&shy;"))
-        {
-            actual.replace("&shy;"," ");
-        }
-        else if(actual.contains("&nbsp;"))
-        {
-            actual.replace("&nbsp"," ");
-        }
-        boolean bool = actual.equals(expected);
-        return bool;
+        return actual;
 
     }
 
     @Step
-    public boolean checkParagraphsQuantity_ServicesSection(int quantity) throws InterruptedException {
+    public int checkParagraphsQuantity_ServicesSection() {
 
         ServicesSectionParagraphs.addAll(driver.findElements(ServicesSectionCommonParagraphLocator));
         int size = ServicesSectionParagraphs.size();
-        boolean bool =  size == quantity;
-        return bool;
+        return size;
 
     }
 
     @Step
-    public boolean checkParagraphsNumberMatchesWithText_ServicesSection(int number,String ExpectedText) throws InterruptedException {
+    public String  checkParagraphsNumberMatchesWithText_ServicesSection(int number) {
 
         ServicesSectionParagraphs.addAll(driver.findElements(ServicesSectionCommonParagraphLocator));
         int size = ServicesSectionParagraphs.size();
@@ -397,42 +386,27 @@ public class MainPage {
             ServicesSectionParagraphsTexts.add(ServicesSectionParagraphs.get(i).getAttribute("innerHTML"));
         }
         String actual = ServicesSectionParagraphsTexts.get(number - 1);
-        if(actual.contains("&shy;"))
-        {
-            actual.replace("&shy;"," ");
-        }
-        else if(actual.contains("&nbsp;"))
-        {
-            actual.replace("&nbsp"," ");
-        }
-        boolean bool = actual.equals(ExpectedText);
-        return bool;
-
+        return actual;
     }
 
 
     @Step
-    public boolean checkClientItems_Quantity_OurClientsSection(int quantity) throws InterruptedException {
+    public int checkClientItems_Quantity_OurClientsSection() {
         ClientItems.addAll(driver.findElements(ClientItem));
         int size = ClientItems.size();
-        boolean bool =  size == quantity;
-        return bool;
-
+        return size;
     }
 
 
     @Step
-    public boolean checkClientLogos_Quantity_OurClientsSection(int quantity) throws InterruptedException {
-
+    public int checkClientLogos_Quantity_OurClientsSection() {
         ClientLogos.addAll(driver.findElements(ClientLogo));
         int size = ClientLogos.size();
-        boolean bool =  size == quantity;
-        return bool;
-
+        return size;
     }
 
     @Step
-    public boolean check_All_Client_Items_Have_theSame_Size(Dimension expected) throws InterruptedException {
+    public boolean check_All_Client_Items_Have_theSame_Size(Dimension expected)  {
 
         boolean bool = false;
         ClientItems.addAll(driver.findElements(ClientItem));
@@ -447,7 +421,7 @@ public class MainPage {
     }
 
     @Step
-    public boolean check_All_Client_Logos_Have_theSame_Size(Dimension expected) throws InterruptedException {
+    public boolean check_All_Client_Logos_Do_Not_Have_theSame_Size(Dimension expected) {
 
         boolean bool = false;
         ClientLogos.addAll(driver.findElements(ClientLogo));
@@ -462,7 +436,7 @@ public class MainPage {
     }
 
     @Step
-    public boolean check_Logos_Number_Matches_With_Dimension(int number,Dimension expected) throws InterruptedException {
+    public Dimension check_Logos_Number_Matches_With_Dimension(int number) {
 
         ClientLogos.addAll(driver.findElements(ClientLogo));
         int size = ClientLogos.size();
@@ -471,9 +445,45 @@ public class MainPage {
             ClientLogosSizes.add( ClientLogos.get(i).getSize());
         }
         Dimension actual = ClientLogosSizes.get(number - 1);
-        boolean bool = actual.equals(expected);
-        return bool;
+        return actual;
     }
+    
+    @Step
+    public int check_Quantity_Of_Displayed_Logos() throws InterruptedException {
+
+        ClientLogos.addAll(driver.findElements(ClientLogo));
+        int size = ClientLogos.size();
+        int counter = 0;
+
+        for(int i = 0; i < size; i++ ) {
+            if(ClientLogos.get(i).isDisplayed() == true)
+            {
+                counter++;
+            }
+            else
+            {
+                counter += 0;
+            }
+
+        }
+        return counter;
+    }
+
+
+
+    @Step
+    public Dimension checkIndustriesImageNumberMatchesWithDimension(int number) {
+
+        ImageLocators.addAll(driver.findElements(new By.ByXPath("/html/body/div[2]/div[1]/div/section[1]/div/ul/div/div/li/div/div[1]/img")));
+        for(int i = 0; i < 10; i++ )
+        {
+            ImageDimensions.add(ImageLocators.get(i).getSize());
+        }
+        Dimension actual = ImageDimensions.get(number - 1);
+        return actual;
+    }
+
+
 
 
 
