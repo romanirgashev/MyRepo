@@ -17,8 +17,13 @@ public class MainPage {
     protected By CompanyNameHeader = By.xpath("//span[text()='Envion software' ]");
     protected By DevelopmentHeader = By.xpath("//span[text()='Development with spirit' ]");
     protected By CompanyLogo = By.xpath("/html/body/div[2]/div[1]/div/header/div/a/img");
+    protected String CompanyLogoString = "/html/body/div[2]/div[1]/div/header/div/a/img";
+
     protected By ExpertiseImage = By.xpath("//html/body/div[2]/div[1]/div/div/section/div/a/img");
     protected By gamburgerMenuButton = By.xpath("/html/body/nav/div[1]/button/span[2]");
+    protected String Nav = "/html/body/nav";
+    protected String gamburgerMenuButtonNameString = "/html/body/nav/div[1]/button/span[1]";
+    protected By gamburgerMenuButtonNameBy = By.xpath("/html/body/nav/div[1]/button/span[1])");
     protected By CloseGamburgerMenuButton = By.xpath("/html/body/nav/div[1]/button/span[2]/span[1]");
     protected By BackgroundImage = (By.xpath("/html/body/div[2]/div[1]/div/div/section/img"));
 
@@ -208,7 +213,7 @@ public class MainPage {
     protected String OurClientsSection_OurClients_Paragraph_Text = "Our clients are top international companies with many years of experience, small teams, and even startups without full-fledged formed teams inside. We take on various roles on the road to product delivery and a high level of service for our customers. Our team is ready to take over at any stage of project development.";
     protected By ClientItem = By.cssSelector("body > div.site-wrapper > div.scroll-content > div > section.clients.pt20.container-md > div.clients__body > div.clients__desktop-list > div > div");
     protected By ClientLogo = By.cssSelector("body > div.site-wrapper > div.scroll-content > div > section.clients.pt20.container-md > div.clients__body > div.clients__desktop-list > div > div > img");
-
+//    protected WebElement ClientLogoW = driver.findElement(By.cssSelector("body > div.site-wrapper > div.scroll-content > div > section.clients.pt20.container-md > div.clients__body > div.clients__desktop-list > div > div > img"));
 
     //Collection of H2 headers locators
     List<WebElement>H2 =  new ArrayList<>();

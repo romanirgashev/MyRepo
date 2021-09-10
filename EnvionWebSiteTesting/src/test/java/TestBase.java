@@ -21,15 +21,21 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
+
+import org.openqa.selenium.JavascriptExecutor;
 
 public class TestBase {
 
 
 
-    WebDriver driver;
+    protected WebDriver driver;
+    List<Long> TimersOfLoading =  new ArrayList<>();
 
 
 
@@ -42,17 +48,17 @@ public class TestBase {
         switch (browser)
         {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "D:\\drivers for testing\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "F:\\drivers for testing\\chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
 
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "D:\\drivers for testing\\geckodriver.exe");
+                System.setProperty("webdriver.gecko.driver", "F:\\drivers for testing\\geckodriver.exe");
                 driver = new FirefoxDriver();
                 break;
 
             case "edge":
-                System.setProperty("webdriver.edge.driver", "D:\\drivers for testing\\msedgedriver.exe");
+                System.setProperty("webdriver.edge.driver", "F:\\drivers for testing\\msedgedriver.exe");
                 driver = new EdgeDriver();
                 break;
 
@@ -61,6 +67,8 @@ public class TestBase {
 
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+//        Dimension test = new Dimension(400,898);
+//        driver.manage().window().setSize(test);
         driver.get(URL);
 
     }
@@ -88,6 +96,44 @@ public class TestBase {
         }
         return this;
     }
+
+    @Step
+    public Object scrollUpToElementSmoothly(int quantity) throws InterruptedException {
+        Actions action = new Actions(driver);
+        for(int i = 1; i <= quantity;i ++) {
+            Thread.sleep(300);
+            action.moveByOffset(30, 20).click().build().perform();
+            Thread.sleep(300);
+            action.sendKeys(Keys.ARROW_UP).build().perform();
+        }
+        return this;
+    }
+
+
+/*    @Step
+    public Object scrollToElementJS(By Element)  {
+        Actions actions = new Actions(driver);
+        actions.moveToElement((WebElement) Element);
+        actions.perform();
+
+        return this;
+    }*/
+
+    /*//initialize element
+    WebElement element = driver.findElement(By.id("..."));
+
+    //get position
+    int x = element.getLocation().getX();
+    int y = element.getLocation().getY();
+
+    //scroll to x y
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+js.executeScript("window.scrollBy(" +x +", " +y +")");*/
+
+
+
+
+
 
     @Attachment(value = "Screenshot of the actual result of the test", type = "image/png")
     public byte[] makeScreenshot() {
@@ -144,6 +190,12 @@ public class TestBase {
         return driver.findElement(Element).isDisplayed() ;
     }
 
+
+    @Step
+    public boolean checkPresenseOfElement(String Element) throws InterruptedException {
+        return driver.findElement(By.id(Element)).isDisplayed() ;
+    }
+
     public boolean check_Element_IsEnabled(By Element) throws InterruptedException {
         return driver.findElement(Element).isEnabled();
     }
@@ -159,6 +211,17 @@ public class TestBase {
         return this;
     }
 
+
+    @Step
+    public Object WebDriverWait2(By Element)
+    {
+//        WebDriverWait waitDriver = new WebDriverWait(driver, 10);
+        new WebDriverWait(driver,1)
+                .until(ExpectedConditions.presenceOfElementLocated(Element));
+//        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        return this;
+    }
+
     @Step
     public String getTextOfElement(By Element)
     {
@@ -167,16 +230,31 @@ public class TestBase {
     }
 
     @Step
-    public String getRGBColorOfElement(By Element)
+    public String getRGBColorOfElementsName(By Element)
     {
         String colorOfElement = driver.findElement(Element).getCssValue("color");
         return colorOfElement;
     }
 
     @Step
-    public String getColorAs_HEX_OfElement(By Element)
+    public String getRGBColorOfElementsBody(By Element)
+    {
+        String colorOfElement = driver.findElement(Element).getCssValue("background-color");
+        return colorOfElement;
+    }
+
+    @Step
+    public String getColorAs_HEX_OfElements_Name(By Element)
     {
         String colorOfElement = driver.findElement(Element).getCssValue("color");
+        String ColorHEX = Color.fromString(colorOfElement).asHex();
+        return ColorHEX;
+    }
+
+    @Step
+    public String getColorAs_HEX_OfElements_Body(By Element)
+    {
+        String colorOfElement = driver.findElement(Element).getCssValue("background-color");
         String ColorHEX = Color.fromString(colorOfElement).asHex();
         return ColorHEX;
     }
@@ -200,6 +278,64 @@ public class TestBase {
         String Paragraph = driver.findElement(By.xpath(ParagraphLocator)).getAttribute("innerHTML").trim();
         return Paragraph;
     }
+
+/*    @Step
+    public double get_Time_of_Loading() {
+            //Creating the JavascriptExecutor interface object by Type casting
+            JavascriptExecutor js = (JavascriptExecutor)driver;
+
+            //This will get you the time passed since you page navigation started
+            return (Double)((JavascriptExecutor)driver).executeScript("return Date.now() - performance.timeOrigin;");
+    }*/
+
+    @Step
+    public String get_alt_Attribute_of_Element (String ImageLocator)
+    {
+        String Paragraph = driver.findElement(By.xpath(ImageLocator)).getAttribute("alt").trim();
+        return Paragraph;
+    }
+
+    @Step
+    public String get_Class_Attribute_of_Element (String ImageLocator)
+    {
+        String Paragraph = driver.findElement(By.xpath(ImageLocator)).getAttribute("class").trim();
+        return Paragraph;
+    }
+
+    @Step
+    public String get_Style_Attribute_of_Element (String ImageLocator)
+    {
+        String Paragraph = driver.findElement(By.cssSelector(ImageLocator)).getAttribute("style").trim();
+        return Paragraph;
+    }
+
+    @Step
+    public String get_FontSize_of_Element (By ImageLocator)
+    {
+        String actual = driver.findElement(ImageLocator).getCssValue("font-size").trim();
+        return actual;
+    }
+
+
+/*    @Step
+    public String get_Naturel_Size_Of_Element(){
+        WebElement Element = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/section[1]/div/div[1]/h1"));
+        String naturalWidth = Element.getAttribute("naturalWidth");
+        String naturalHeight = Element.getAttribute("naturalHeight");
+
+// get the intrinsic size with a piece of Javascript
+        *//*ArrayList result = (ArrayList)((JavascriptExecutor) driver).executeScript(
+                "return [arguments[0].naturalWidth, arguments[0].naturalHeight];", Element);
+        Long naturalWidth2 = (Long)result.get(0);
+        Long naturalHeight2 = (Long)result.get(1);*//*
+        return naturalWidth;
+    }*/
+
+
+
+
+
+
 
 
     public void tearDown()

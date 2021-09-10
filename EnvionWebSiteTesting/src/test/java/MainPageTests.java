@@ -35,7 +35,6 @@ public class MainPageTests extends TestBase{
         howWeWorkSupport = new HowWeWorkSupport(driver);
     }
 
-/*
     @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
@@ -50,7 +49,7 @@ public class MainPageTests extends TestBase{
     @DisplayName("Разрешение фоновой картинки на стартовой странице соответствует требованиям")
     public void Background_Image_Has_Correct_Dimension_expect_pass()  {
         Dimension actual = getDimensionOfElement(mainPage.BackgroundImage);
-        Dimension expected = new Dimension(1536,710);
+        Dimension expected = new Dimension(1920,925);
         Assert.assertEquals(expected,actual);
     }
 
@@ -132,7 +131,6 @@ public class MainPageTests extends TestBase{
         Assert.assertEquals(expected,actual);
     }
 
-*/
 /*    @Epic("Переход осуществляется на ожидаемую страницу")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
@@ -141,8 +139,7 @@ public class MainPageTests extends TestBase{
         clickElement(mainPage.ExpertiseImage);
         String actual = checkURLCorrectness();
         Assert.assertEquals(expertisePage.ExpertisePageURL,actual);
-    }*//*
-
+    }*/
 
 
     @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
@@ -195,6 +192,17 @@ public class MainPageTests extends TestBase{
         Assert.assertTrue(bool);
     }
 
+
+/*    @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Test
+    @DisplayName("Имя кнопки \"menu\" не отображена при открытом гамбургер меню на главной странице")
+    public void Name_Of_gamb_Menu_Button_Isnot_Displayed_expect_pass() throws InterruptedException {
+        clickElement(mainPage.gamburgerMenuButton);
+        boolean bool = checkPresenseOfElement(mainPage.gamburgerMenuButtonNameBy);
+        Assert.assertFalse(bool);
+    }*/
+
     @Epic("Элемент содержит текст,соответствующий требованиям")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
@@ -204,7 +212,7 @@ public class MainPageTests extends TestBase{
         Assert.assertEquals("",actual);
     }
 
-
+    @Epic("Элемент содержит текст,соответствующий требованиям")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
     @DisplayName("Название \"menu\" отображено в открытом гамбургер меню")
@@ -213,6 +221,39 @@ public class MainPageTests extends TestBase{
         WebDriverWait(mainPage.MenuNameFromGamburgerMenu);
         boolean bool = checkPresenseOfElement(mainPage.MenuNameFromGamburgerMenu);
         Assert.assertTrue(bool);
+    }
+
+    @Epic("Элемент имеет правильное состояние")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Test
+    @DisplayName("Значение атрибута \"class\" кнопки gamburgerMenu имеет значение \"menu\" по умолчанию")
+    public void gamburgerMenu_Button_Has_Correct_Values_Of_Attrs_By_defaultexpect_pass() throws InterruptedException {
+        String actualNavClass = get_Class_Attribute_of_Element(mainPage.Nav);
+        Assert.assertEquals( "menu menu--inverse",actualNavClass);
+
+    }
+
+    @Epic("Элемент имеет правильное состояние")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Test
+    @DisplayName("Значение атрибута \"class\" кнопки gamburgerMenu имеет значение \"menu\" в открытом состоянии")
+    public void gamburgerMenu_Button_Has_Correct_Values_Of_Attrs_In_Opened_State_expect_pass() throws InterruptedException {
+        clickElement(mainPage.gamburgerMenuButton);
+        String actualNavClass = get_Class_Attribute_of_Element(mainPage.Nav);
+        Assert.assertEquals( "menu menu--inverse menu--open",actualNavClass);
+
+    }
+
+    @Epic("Элемент имеет правильное состояние")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Test
+    @DisplayName("Значение атрибута \"class\" кнопки gamburgerMenu имеет значение \"menu\" в закрытом состоянии")
+    public void gamburgerMenu_Button_Has_Correct_Values_Of_Attrs_In_Closed_State_expect_pass() throws InterruptedException {
+        clickElement(mainPage.gamburgerMenuButton);
+        clickElement(mainPage.gamburgerMenuButton);
+        String actualNavClass = get_Class_Attribute_of_Element(mainPage.Nav);
+        Assert.assertEquals( "menu menu--inverse",actualNavClass);
+
     }
 
     @Epic("Элемент содержит текст,соответствующий требованиям")
@@ -390,14 +431,14 @@ public class MainPageTests extends TestBase{
         Assert.assertEquals("Get in touch",actual);
     }
 
-    @Epic("Цвет элемента соответствует требованиям")
+    /*@Epic("Цвет элемента соответствует требованиям")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
-    @DisplayName("Кнопка \"Get In Touch\" в гамбургер меню имеет название соответствующее требованиям ")
+    @DisplayName("Кнопка \"Get In Touch\" в гамбургер меню имеет цвет соответствующий требованиям ")
     public void Background_Has_Correct_Color_expect_pass()  {
         String actual = getColorAs_HEX_OfElement(mainPage.BodyLocator);
         Assert.assertEquals("#001c33",actual);
-    }
+    }*/
 
 
 
@@ -408,7 +449,6 @@ public class MainPageTests extends TestBase{
 
 
 
-*/
 /*    @Test
     public void Switch_to_DataScienceTab_byClick_toNext_expect_pass() throws InterruptedException {
         scrollToElement(1);
@@ -423,8 +463,7 @@ public class MainPageTests extends TestBase{
         clickElement(mainPage.ScrollableSectionSecondImage);
         boolean bool = mainPage.checkTextOfScrollableSection(mainPage.ScrollableSectionFirstH3Header);
         Assert.assertTrue(bool);
-    }*//*
-
+    }*/
 
 
 
@@ -491,7 +530,6 @@ public class MainPageTests extends TestBase{
     @DisplayName("Заголовок \"Our Clients\" отображается на главной странице")
     public void OurClients_Header_Is_Displayed_expect_pass() throws InterruptedException {
         scrollToElement(5);
-        scrollToElementSmoothly(10);
         boolean bool = checkPresenseOfElement(mainPage.OurClientsSection_OurClients_H2Header);
         Assert.assertTrue(bool);
     }
@@ -861,20 +899,9 @@ public class MainPageTests extends TestBase{
         Assert.assertTrue(bool);
     }
 
-*/
-/*    @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
-    @Severity(value = SeverityLevel.BLOCKER)
-    @Test
-    public void test() throws InterruptedException {
-        long time = System.currentTimeMillis();
-        scrollToElement(2);
-        scrollToElementSmoothly(5);
-        long time2 = System.currentTimeMillis();
-        double actual = time2 - time;
-        Assert.assertEquals(5000,actual,1000);
-        System.out.println(time);
-        System.out.println(time2);
-    }*//*
+
+
+
 
 
     @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
@@ -893,8 +920,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Кнопка \"Read More\" в секции \"Business Analysis\" из раздела \"Services\" содержит ссылку, соответствующую требованиям")
     public void Business_Analysis_ReadMore_Button_From_Services_Section_Has_Correct_Link_expect_pass() throws InterruptedException {
-        scrollToElement(3);
-        scrollToElementSmoothly(1);
+        scrollToElement(2);
         clickElement(mainPage.ServicesSection_BusinessAnalysisReadMoreButton);
         String actual = checkURLCorrectness();
         Assert.assertEquals("https://envionsoftware.com/how-we-work/#tab1",actual);
@@ -905,8 +931,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Кнопка \"Business Analysis\" на странице \"How we work\" имеет состояние \"Enabled\" после перехода с главной страницы")
     public void Click_On_Business_Analysis_ReadMore_Button_From_Services_Section_Opens_Correct_Tab_expect_pass() throws InterruptedException {
-        scrollToElement(3);
-        scrollToElementSmoothly(1);
+        scrollToElement(2);
         clickElement(mainPage.ServicesSection_BusinessAnalysisReadMoreButton);
         boolean bool = check_Element_IsEnabled(howWeWorkSupport.BusinessAnalysis_TabSwither);
         WebDriverWait(howWeWorkSupport.BusinessAnalysis_TabSwither);
@@ -930,8 +955,8 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Заголовок \"Product Design\" 3 порядка из секции \"Services\" отображается на главной странице")
     public void Product_Design_H3Header_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
-        scrollToElement(3);
-        scrollToElementSmoothly(1);
+        scrollToElement(2);
+        scrollToElementSmoothly(3);
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_ProductDesignH3HeaderLocator);
         Assert.assertTrue(bool);
     }
@@ -1021,8 +1046,8 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Кнопка \"Development\" на странице \"How we work\" имеет состояние \"Enabled\" после перехода с главной страницы")
     public void Click_On_Development_ReadMore_Button_From_Services_Section_Opens_Correct_Tab_expect_pass() throws InterruptedException {
-        scrollToElement(4);
-        scrollToElementSmoothly(5);
+        scrollToElement(3);
+        scrollToElementSmoothly(1);
         clickElement(mainPage.ServicesSection_DevelopmentReadMoreButton);
         boolean bool = check_Element_IsEnabled(howWeWorkSupport.Development_TabSwither);
         Assert.assertTrue(bool);
@@ -1034,8 +1059,8 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Параграф \"Quality Assurance\" из секции \"Services\" отображается на главной странице")
     public void Quality_Assurance_Paragraph_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
-        scrollToElement(4);
-        scrollToElementSmoothly(5);
+        scrollToElement(3);
+        scrollToElementSmoothly(3);
             boolean bool = checkPresenseOfElement(mainPage.ServicesSection_QualityAssuranceParagraphLocator);
         Assert.assertTrue(bool);
     }
@@ -1045,8 +1070,8 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Заголовок \"Quality Assurance\" в секции \"Quality Assurance\" из раздела \"Services\" отображается на главной странице")
     public void Quality_Assurance_H3Header_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
-        scrollToElement(4);
-        scrollToElementSmoothly(5);
+        scrollToElement(3);
+        scrollToElementSmoothly(3);
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_QualityAssuranceH3HeaderLocator);
         Assert.assertTrue(bool);
     }
@@ -1067,8 +1092,8 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Кнопка \"Read More\" в секции \"Quality Assurance\" из раздела \"Services\" содержит ссылку, соответствующую требованиям")
     public void Quality_Assurance_ReadMore_Button_From_Services_Section_Has_Correct_Link_expect_pass() throws InterruptedException {
-        scrollToElement(4);
-        scrollToElementSmoothly(5);
+        scrollToElement(3);
+        scrollToElementSmoothly(3);
         clickElement(mainPage.ServicesSection_QualityAssuranceReadMoreButton);
         String actual = checkURLCorrectness();
         Assert.assertEquals("https://envionsoftware.com/how-we-work/#tab4",actual);
@@ -1080,7 +1105,7 @@ public class MainPageTests extends TestBase{
     @DisplayName("Кнопка \"Quality Assurance\" на странице \"How we work\" имеет состояние \"Enabled\" после перехода с главной страницы")
     public void Click_On_Quality_Assurance_ReadMore_Button_From_Services_Section_Opens_Correct_Tab_expect_pass() throws InterruptedException {
         scrollToElement(4);
-        scrollToElementSmoothly(5);
+        scrollToElementSmoothly(3);
         clickElement(mainPage.ServicesSection_QualityAssuranceReadMoreButton);
         boolean bool = check_Element_IsEnabled(howWeWorkSupport.QualityAssurance_TabSwither);
         Assert.assertTrue(bool);
@@ -1113,7 +1138,8 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Кнопка \"Read More\" в секции \"Support\" из раздела \"Services\" отображается на главной странице")
     public void Support_ReadMore_Button_From_Services_Section_is_Displayed_expect_pass() throws InterruptedException {
-        scrollToElement(5);
+        scrollToElement(4);
+//        scrollToElementSmoothly(5);
         WebDriverWait(mainPage.ServicesSection_SupportReadMoreButton);
         boolean bool = checkPresenseOfElement(mainPage.ServicesSection_SupportReadMoreButton);
         Assert.assertTrue(bool);
@@ -1125,7 +1151,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Кнопка \"Read More\" в секции \"Support\" из раздела \"Services\" содержит ссылку, соответствующую требованиям")
     public void Support_ReadMore_Button_From_Services_Section_Has_Correct_Link_expect_pass() throws InterruptedException {
-        scrollToElement(5);
+        scrollToElement(4);
         clickElement(mainPage.ServicesSection_SupportReadMoreButton);
         String actual = checkURLCorrectness();
         Assert.assertEquals("https://envionsoftware.com/how-we-work/#tab5",actual);
@@ -1136,7 +1162,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Кнопка \"Support\" на странице \"How we work\" имеет состояние \"Enabled\" после перехода с главной страницы")
     public void Click_On_Support_ReadMore_Button_From_Services_Section_Opens_Correct_Tab_expect_pass() throws InterruptedException {
-        scrollToElement(5);
+        scrollToElement(4);
         clickElement(mainPage.ServicesSection_SupportReadMoreButton);
         boolean bool = check_Element_IsEnabled(howWeWorkSupport.Support_TabSwither);
         Assert.assertTrue(bool);
@@ -1147,7 +1173,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Параграф из раздела \"Our Clients\" отображается на главной странице")
     public void OurClients_Paragraph_From_OurClients_Section_is_Displayed_expect_pass() throws InterruptedException {
-        scrollToElement(6);
+        scrollToElement(5);
         scrollToElementSmoothly(1);
         boolean bool = checkPresenseOfElement(mainPage.OurClientsSection_OurClients_Paragraph);
         Assert.assertTrue(bool);
@@ -1213,7 +1239,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Разрешение логотипа клиента №1 соответствует требованиям")
     public void first_Clients_Logo_Has_Correct_Dimension_expect_pass() throws InterruptedException {
-        Dimension expected = new Dimension(121,30);
+        Dimension expected = new Dimension(121,28);
         Dimension actual = mainPage.check_Logos_Number_Matches_With_Dimension(1);
         Assert.assertEquals(expected,actual);
     }
@@ -1233,7 +1259,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Разрешение логотипа клиента №3 соответствует требованиям")
     public void third_Clients_Logo_Has_Correct_Dimension_expect_pass() throws InterruptedException {
-        Dimension expected = new Dimension(121,15);
+        Dimension expected = new Dimension(121,16);
         Dimension actual = mainPage.check_Logos_Number_Matches_With_Dimension(3);
         Assert.assertEquals(expected,actual);
     }
@@ -1243,7 +1269,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Разрешение логотипа клиента №4 соответствует требованиям")
     public void fourth_Clients_Logo_Has_Correct_Dimension_expect_pass() throws InterruptedException {
-        Dimension expected = new Dimension(121,23);
+        Dimension expected = new Dimension(121,22);
         Dimension actual = mainPage.check_Logos_Number_Matches_With_Dimension(4);
         Assert.assertEquals(expected,actual);
     }
@@ -1293,7 +1319,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Разрешение логотипа клиента №9 соответствует требованиям")
     public void ninth_Clients_Logo_Has_Correct_Dimension_expect_pass() throws InterruptedException {
-        Dimension expected = new Dimension(121,31);
+        Dimension expected = new Dimension(121,32);
         Dimension actual = mainPage.check_Logos_Number_Matches_With_Dimension(9);
         Assert.assertEquals(expected,actual);
     }
@@ -1303,7 +1329,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Разрешение логотипа клиента №10 соответствует требованиям")
     public void tenth_Clients_Logo_Has_Correct_Dimension_expect_pass() throws InterruptedException {
-        Dimension expected = new Dimension(121,23);
+        Dimension expected = new Dimension(121,24);
         Dimension actual = mainPage.check_Logos_Number_Matches_With_Dimension(10);
         Assert.assertEquals(expected,actual);
     }
@@ -1333,7 +1359,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Разрешение логотипа клиента №13 соответствует требованиям")
     public void thirteenth_Clients_Logo_Has_Correct_Dimension_expect_pass() throws InterruptedException {
-        Dimension expected = new Dimension(87,79);
+        Dimension expected = new Dimension(87,80);
         Dimension actual = mainPage.check_Logos_Number_Matches_With_Dimension(13);
         Assert.assertEquals(expected,actual);
     }
@@ -1353,7 +1379,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Разрешение логотипа клиента №15 соответствует требованиям")
     public void fifteenth_Clients_Logo_Has_Correct_Dimension_expect_pass() throws InterruptedException {
-        Dimension expected = new Dimension(121,39);
+        Dimension expected = new Dimension(121,40);
         Dimension actual = mainPage.check_Logos_Number_Matches_With_Dimension(15);
         Assert.assertEquals(expected,actual);
     }
@@ -1373,7 +1399,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Разрешение логотипа клиента №17 соответствует требованиям")
     public void seventeenth_Clients_Logo_Has_Correct_Dimension_expect_pass() throws InterruptedException {
-        Dimension expected = new Dimension(114,57);
+        Dimension expected = new Dimension(115,58);
         Dimension actual = mainPage.check_Logos_Number_Matches_With_Dimension(17);
         Assert.assertEquals(expected,actual);
     }
@@ -1383,7 +1409,7 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("Разрешение логотипа клиента №18 соответствует требованиям")
     public void eighteenth_Clients_Logo_Has_Correct_Dimension_expect_pass() throws InterruptedException {
-        Dimension expected = new Dimension(121,25);
+        Dimension expected = new Dimension(121,24);
         Dimension actual = mainPage.check_Logos_Number_Matches_With_Dimension(18);
         Assert.assertEquals(expected,actual);
     }
@@ -1401,14 +1427,15 @@ public class MainPageTests extends TestBase{
 
 
 
+
 //  In this type of tests edge and chrome have the same expected results,for FIREFOX expected+1
     @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
     @DisplayName("1 логотип клиента отображен на главной странице после скролла вниз")
     public void One_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
-        scrollToElement(5);
-        scrollToElementSmoothly(15);
+        scrollToElement(4);
+        scrollToElementSmoothly(12);
         makeScreenshot();
         int actual = mainPage.check_Quantity_Of_Displayed_Logos();
         Assert.assertEquals(1,actual);
@@ -1416,14 +1443,15 @@ public class MainPageTests extends TestBase{
 
 
 
+
     @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
     @Severity(value = SeverityLevel.BLOCKER)
-    @Flaky
     @Test
+    @Flaky
     @DisplayName("4 логотипа клиентов отображены на главной странице после скролла вниз")
     public void Four_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
-        scrollToElement(5);
-        scrollToElementSmoothly(17);
+        scrollToElement(4);
+        scrollToElementSmoothly(15);
         Thread.sleep(1500);
         makeScreenshot();
         int actual = mainPage.check_Quantity_Of_Displayed_Logos();
@@ -1436,8 +1464,8 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("6 логотипов клиентов отображены на главной странице после скролла вниз")
     public void Six_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
-        scrollToElement(6);
-        scrollToElementSmoothly(2);
+        scrollToElement(4);
+        scrollToElementSmoothly(16);
         Thread.sleep(300);
         makeScreenshot();
         int actual = mainPage.check_Quantity_Of_Displayed_Logos();
@@ -1449,8 +1477,8 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("9 логотипов клиентов отображены на главной странице после скролла вниз")
     public void eight_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
-        scrollToElement(6);
-        scrollToElementSmoothly(3);
+        scrollToElement(4);
+        scrollToElementSmoothly(17);
         Thread.sleep(1500);
         makeScreenshot();
         int actual = mainPage.check_Quantity_Of_Displayed_Logos();
@@ -1460,38 +1488,49 @@ public class MainPageTests extends TestBase{
     @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
+    @DisplayName("11 логотипов клиентов отображены на главной странице после скролла вниз")
+    public void eleven_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
+        scrollToElement(4);
+        scrollToElementSmoothly(18);
+        Thread.sleep(1500);
+        makeScreenshot();
+        int actual = mainPage.check_Quantity_Of_Displayed_Logos();
+        Assert.assertEquals(11,actual);
+    }
+
+    @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Test
     @DisplayName("13 логотипов клиентов отображены на главной странице после скролла вниз")
     public void thirteen_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
-        scrollToElement(6);
-        scrollToElementSmoothly(5);
+        scrollToElement(4);
+        scrollToElementSmoothly(19);
         Thread.sleep(1500);
         makeScreenshot();
         int actual = mainPage.check_Quantity_Of_Displayed_Logos();
         Assert.assertEquals(13,actual);
     }
 
-*/
 /*    @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
     @DisplayName("15 логотипов клиентов отображены на главной странице после скролла вниз")
     public void fifteen_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
-        scrollToElement(6);
-        scrollToElementSmoothly(6);
+        scrollToElement(4);
+        scrollToElementSmoothly(20);
         Thread.sleep(1500);
         makeScreenshot();
         int actual = mainPage.check_Quantity_Of_Displayed_Logos();
         Assert.assertEquals(15,actual);
-    }*//*
-
+    }*/
 
     @Epic("Элемент(ы) отображается после выполнения определенных действий пользователем")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
     @DisplayName("16 логотипов клиентов отображены на главной странице после скролла вниз")
     public void sixteen_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
-        scrollToElement(6);
-        scrollToElementSmoothly(7);
+        scrollToElement(4);
+        scrollToElementSmoothly(20);
         makeScreenshot();
         int actual = mainPage.check_Quantity_Of_Displayed_Logos();
         Assert.assertEquals(16,actual);
@@ -1502,8 +1541,9 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("18 логотипов клиентов отображены на главной странице после скролла вниз")
     public void eighteen_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
-        scrollToElement(6);
-        scrollToElementSmoothly(8);
+        scrollToElement(4);
+        scrollToElementSmoothly(22);
+//        scrollUpToElementSmoothly(1);
         makeScreenshot();
         int actual = mainPage.check_Quantity_Of_Displayed_Logos();
         Assert.assertEquals(18,actual);
@@ -1514,8 +1554,8 @@ public class MainPageTests extends TestBase{
     @Test
     @DisplayName("19 логотипов клиентов отображены на главной странице после скролла вниз")
     public void nineteen_ClientLogo_is_Displayed_After_Scrolling() throws InterruptedException {
-        scrollToElement(6);
-        scrollToElementSmoothly(10);
+        scrollToElement(4);
+        scrollToElementSmoothly(23);
         makeScreenshot();
         int actual = mainPage.check_Quantity_Of_Displayed_Logos();
         Assert.assertEquals(19,actual);
@@ -1675,7 +1715,7 @@ public class MainPageTests extends TestBase{
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
     @DisplayName("Кнопка \"Get In Touch\" из \"Menu\" на стартовой странице содержит ссылку, соответствующую требованиям")
-    public void GetInTouch_Button_From_GambMune_Has_Correct_Link_expect_pass()  {
+    public void GetInTouch_Button_From_GambMenu_Has_Correct_Link_expect_pass()  {
         clickElement(mainPage.gamburgerMenuButton);
         clickElement(mainPage.GetInTouchButtonFromGamburgerMenu);
         String actual = checkURLCorrectness();
@@ -1692,7 +1732,93 @@ public class MainPageTests extends TestBase{
         String actual = checkURLCorrectness();
         Assert.assertEquals("https://envionsoftware.com/how-we-work/",actual);
     }
-*/
+
+
+
+ /*   @Epic("Страница загружается в течении 5 секунд после перехода ")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Test
+    public void time_For_Redirection_From_Home_To_About_Us() {
+        long time = System.currentTimeMillis();
+        clickElement(mainPage.gamburgerMenuButton);
+        clickElement(mainPage.AboutUsButtonFromGamburgerMenu);
+        long time2 = System.currentTimeMillis();
+        double actual = time2 - time;
+        Assert.assertTrue(actual < 5000.0);
+    }
+
+
+    @Epic("Страница загружается в течении 5 секунд после перехода ")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Test
+    public void time_For_Redirection_From_Home_To_About_Us2() throws InterruptedException {
+        double time = System.currentTimeMillis();
+        double time2;
+        clickElement(mainPage.gamburgerMenuButton);
+        clickElement(mainPage.AboutUsButtonFromGamburgerMenu);
+        if (checkPresenseOfElement(aboutUsPage.Image)){
+            time2 = System.currentTimeMillis();
+        }
+        else {
+            WebDriverWait2(aboutUsPage.Image);
+            time2 = System.currentTimeMillis();
+        }
+        double actual = time2 - time;
+        Assert.assertTrue(actual < 5000.0);
+        System.out.println(time);
+        System.out.println(time2);
+        System.out.println(actual);
+    }
+
+
+    @Epic("Страница загружается в течении 5 секунд после перехода ")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Test
+    public void time_For_Redirection_From_Home_To_About_Us3() throws InterruptedException {
+        long time = System.currentTimeMillis();
+//        double time4 = get_Time_of_Loading();
+        clickElement(mainPage.gamburgerMenuButton);
+        clickElement(mainPage.AboutUsButtonFromGamburgerMenu);
+        scrollToElement(1);
+        while (true)
+        {
+            checkPresenseOfElement(aboutUsPage.Image);
+            if (checkPresenseOfElement(aboutUsPage.Image))
+            {
+                break;
+            }
+            else
+            {
+                WebDriverWait2(aboutUsPage.Image);
+                continue;
+            }
+
+
+        }
+
+        long time2 = System.currentTimeMillis();
+//        double time3 = get_Time_of_Loading();
+        double actual = time2 - time;
+        System.out.println(actual);
+//        System.out.println(time3);
+//        System.out.println(time4);
+        Assert.assertTrue(actual < 5000.0);
+    }
+
+
+    @Epic("Страница загружается в течении 5 секунд после перехода ")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Test
+    public void getMainPage() throws InterruptedException {
+        long time = System.currentTimeMillis();
+        driver.get("https://www.envionsoftware.com");
+        long time2 = System.currentTimeMillis();
+        double actual = time2 - time;
+        System.out.println(time);
+        System.out.println(time2);
+        System.out.println(actual);
+        Assert.assertTrue(actual < 5000.0);
+    }*/
 
 
 
@@ -1702,7 +1828,8 @@ public class MainPageTests extends TestBase{
 
 
 
-/*    @Test
+
+    /*@Test
     public void gav() throws InterruptedException {
         String actual = mainPage.gavgav(2);
         String expected = mainPage.ScrollableCRMSystemsSectionParagraphText;

@@ -14,8 +14,10 @@
         <maven.compiler.target>8</maven.compiler.target>
         <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
         <aspectj.version>1.8.10</aspectj.version>
-        <allure-junit4.version>2.14.0</allure-junit4.version>
-    </properties>
+        <allure-junit4.version>2.10.0</allure-junit4.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -36,16 +38,13 @@
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
 
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.12</version>
-    <scope>test</scope>
-</dependency>
-
-        
-        
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -62,7 +61,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
-            <version>2.14.0</version>
+            <version>2.9.0</version>
         </dependency>
         
         
@@ -112,6 +111,8 @@
                         <property>
                             <name>listener</name>
                             <value>io.qameta.allure.junit4.AllureJunit4</value>
+                            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                            <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
                         </property>
                     </properties>
                     <systemProperties>
